@@ -19,8 +19,15 @@ class Customer
     sql = "SELECT * FROM tickets where film_id = $1"
     values = [@id]
     ticket_data = SqlRunner.run(sql, values)
-    return ticket_data.map{|ticket| Ticket.new(ticket)}
+    return ticket_data.map{|film| Ticket.new(film)}
   end
+
+  # def ()
+  #   sql = "SELECT * FROM tickets where film_id = $1"
+  #   values = [@id]
+  #   ticket_data = SqlRunner.run(sql, values)
+  #   return ticket_data.map{|ticket| Ticket.new(ticket)}
+  # end
 
   def remaining_budget()
     tickets = self.tickets()

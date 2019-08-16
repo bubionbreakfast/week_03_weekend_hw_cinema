@@ -13,7 +13,12 @@ class Film
     @price = options['price'].to_i
   end
 
-
+  def customers()
+    sql = "SELECT * FROM tickets where customer_id = $1"
+    values = [@id]
+    customer_data = SqlRunner.run(sql, values)
+    return ticket_data.map{|customer| Customer.new(ticket)}
+  end
 
   def save()
     sql = "
