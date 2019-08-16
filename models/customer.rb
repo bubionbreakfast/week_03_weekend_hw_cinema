@@ -15,6 +15,21 @@ class Customer
     @funds = options['funds']
   end
 
+  def tickets()
+    sql = "SELECT * FROM tickets where film_id = $1"
+    values = [@id]
+    ticket_data = SqlRunner.run(sql, values)
+    return ticket_data.map{|ticket| Ticket.new(ticket)}
+  end
+
+  def remaining_budget()
+    tickets = self.tickets()
+    ticket_fees = tickets.map{|ticket| film.price}
+    combined_fees = ticket_fees.sum
+    return @funds - combined_fees
+    # return @funds - ticket_fees
+  end
+
   def save()
     sql = "
     INSERT INTO customers
