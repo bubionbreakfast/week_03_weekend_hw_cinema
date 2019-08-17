@@ -26,6 +26,14 @@ end
     return ticket_data.map{|film| Ticket.new(film)}
   end
 
+  def tickets_all()
+    sql = "SELECT * FROM tickets WHERE customer_id = $1"
+    values = [@id]
+    ticket_data = SqlRunner.run(sql, values)
+    total = ticket_data.map{|film| Ticket.new(film)}
+    return total.count
+  end
+
   # def ()
   #   sql = "SELECT * FROM tickets where film_id = $1"
   #   values = [@id]

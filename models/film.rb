@@ -21,7 +21,15 @@ class Film
     sql = "SELECT * FROM tickets WHERE customer_id = $1"
     values = [@id]
     customer_data = SqlRunner.run(sql, values)
-    return ticket_data.map{|customer| Customer.new(ticket)}
+    return customer_data.map{|customer| Customer.new(ticket)}
+  end
+
+  def customers_all()
+    sql = "SELECT * FROM tickets WHERE customer_id = $1"
+    values = [@id]
+    customer_data = SqlRunner.run(sql, values)
+    total = customer_data.map{|customer| Customer.new(customer)}
+    return total.count
   end
 
   def save()
