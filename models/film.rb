@@ -13,8 +13,12 @@ class Film
     @price = options['price'].to_i
   end
 
+  def get_price
+  return @price
+  end
+
   def customers()
-    sql = "SELECT * FROM tickets where customer_id = $1"
+    sql = "SELECT * FROM tickets WHERE customer_id = $1"
     values = [@id]
     customer_data = SqlRunner.run(sql, values)
     return ticket_data.map{|customer| Customer.new(ticket)}

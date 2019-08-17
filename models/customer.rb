@@ -15,8 +15,12 @@ class Customer
     @funds = options['funds']
   end
 
+def buy(film)
+  return @funds - film.get_price
+end
+
   def tickets()
-    sql = "SELECT * FROM tickets where film_id = $1"
+    sql = "SELECT * FROM tickets WHERE customer_id = $1"
     values = [@id]
     ticket_data = SqlRunner.run(sql, values)
     return ticket_data.map{|film| Ticket.new(film)}
@@ -31,7 +35,7 @@ class Customer
 
   def remaining_budget()
     tickets = self.tickets()
-    ticket_fees = tickets.map{|ticket| film.price}
+    ticket_fees = tickets.map{|ticket| ticket.get_price}
     combined_fees = ticket_fees.sum
     return @funds - combined_fees
     # return @funds - ticket_fees

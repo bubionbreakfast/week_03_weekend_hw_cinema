@@ -6,12 +6,27 @@ require_relative('./film')
 
 class Ticket
 
-  attr_reader :id, :customer_id, :film_id
+  attr_reader :id
+  attr_accessor :customer_id, :film_id
 
   def initialize( options )
     @id = options['id'].to_i if options['id']
     @customer_id = options['customer_id'].to_i
     @film_id = options['film_id'].to_i
+  end
+
+  def film()
+    sql = "SELECT * FROM films WHERE id = $1"
+    values = [@film_id]
+    film = SqlRunner.run(sql, values)
+    return film.map{|film|Film.new(film)}
+  end
+
+  def customer()
+    sql = "SELECT * FROM customers WHERE id = $1"
+    values = [@customer_id]
+    customer = SqlRunner.run(sql, values)
+    return customer.map{|customer|Customer.new(customer)}
   end
 
   def save()
