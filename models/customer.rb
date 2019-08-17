@@ -12,12 +12,15 @@ class Customer
     @name = options['name']
     # @customer_id = options['customer_id'].to_i if options['customer_id']
     # @film_id = options['film_id'].to_i if options['film_id']
-    @funds = options['funds']
+    @funds = options['funds'].to_i
   end
 
-def buy(film)
-  return @funds - film.get_price
-end
+  def buy(film)
+    @funds -= film.get_price
+    # self.update()
+
+    update()
+  end
 
   def tickets()
     sql = "SELECT * FROM tickets WHERE customer_id = $1"
@@ -65,7 +68,16 @@ end
     sql = "UPDATE customers SET (name, funds) = ($1, $2) WHERE id = $3"
     values = [@name, @funds, @id]
     SqlRunner.run(sql, values)
+    self
   end
+
+  def self.update_all()
+    sql = "UPDATE customers SET (name, funds) = ($1, $2) WHERE id = $3"
+    values = [@name, @funds, @id]
+    SqlRunner.run(sql, values)
+    # self
+  end
+
 
   def delete()
     sql = "DELETE FROM customers where id = $1"

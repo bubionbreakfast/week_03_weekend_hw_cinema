@@ -2,6 +2,8 @@ require_relative("../db/sql_runner")
 require_relative('./ticket')
 require_relative('./customer')
 require_relative('./film')
+require_relative('./screening')
+
 
 
 class Ticket
@@ -13,6 +15,7 @@ class Ticket
     @id = options['id'].to_i if options['id']
     @customer_id = options['customer_id'].to_i
     @film_id = options['film_id'].to_i
+    @screening_id = options['screening_id'].to_i
   end
 
   def film()
@@ -27,6 +30,13 @@ class Ticket
     values = [@customer_id]
     customer = SqlRunner.run(sql, values)
     return customer.map{|customer|Customer.new(customer)}
+  end
+
+  def screening()
+    sql = "SELECT * FROM screenings WHERE id = $1"
+    values = [@screening_id]
+    screening = SqlRunner.run(sql, values)
+    return screening.map{|screening|Screening.new(screening)}
   end
 
   def save()

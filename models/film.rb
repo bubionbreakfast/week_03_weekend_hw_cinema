@@ -2,6 +2,7 @@ require_relative("../db/sql_runner")
 require_relative('./ticket')
 require_relative('./customer')
 require_relative('./film')
+require_relative('./screening')
 
 class Film
   attr_accessor :title, :price
@@ -14,7 +15,7 @@ class Film
   end
 
   def get_price
-  return @price
+    return @price
   end
 
   def customers()
