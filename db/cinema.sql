@@ -15,13 +15,14 @@ CREATE TABLE customers (
 
 CREATE TABLE screenings (
   id SERIAL4 PRIMARY KEY,
-  time VARCHAR(255)
+  film_time VARCHAR(255)
 );
 
 CREATE TABLE films (
   id SERIAL4 PRIMARY KEY,
   title VARCHAR(255),
-  price INT4
+  price INT4,
+  screening_time INT4 REFERENCES screenings(id) ON DELETE CASCADE
 );
 
 CREATE TABLE tickets (

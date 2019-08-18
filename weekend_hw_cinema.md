@@ -52,6 +52,24 @@ It's enough if you can call your methods in pry, don't worry about an interface.
 
 ### Advanced extensions:
   - Create a screenings table that lets us know what time films are showing
+  <!-- [3] pry(main)> screening1.tickets
+=> []
+[4] pry(main)> screening1.get_time
+=> "18:00"
+[5] pry(main)> Screening.all
+=> [#<Screening:0x007fdc4ab0afa8 @film_time=nil, @id=1>,
+ #<Screening:0x007fdc4ab0ac60 @film_time="18:00", @id=7>,
+ #<Screening:0x007fdc4ab0ab70 @film_time="22:00", @id=8>,
+ #<Screening:0x007fdc4ab0aa80 @film_time="23:30", @id=9>,
+ #<Screening:0x007fdc4ab0a9e0 @film_time="18:00", @id=10>,
+ #<Screening:0x007fdc4ab0a8f0 @film_time="22:00", @id=11>,
+ #<Screening:0x007fdc4ab0a828 @film_time="23:30", @id=12>,
+ #<Screening:0x007fdc4ab0a760 @film_time="18:00", @id=13>,
+ #<Screening:0x007fdc4ab0a648 @film_time="22:00", @id=14>,
+ #<Screening:0x007fdc4ab0a530 @film_time="23:30", @id=15>,
+ #<Screening:0x007fdc4ab0a440 @film_time="18:00", @id=16>,
+ #<Screening:0x007fdc4ab0a378 @film_time="22:00", @id=17>,
+ #<Screening:0x007fdc4ab0a2d8 @film_time="23:30", @id=18> -->
   - Write a method that finds out what is the most popular time (most tickets sold) for a given film
   - Limit the available tickets for screenings.
   - Add any other extensions you think would be great to have at a cinema!

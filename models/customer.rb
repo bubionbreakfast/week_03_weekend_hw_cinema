@@ -16,10 +16,13 @@ class Customer
   end
 
   def buy(film)
-    @funds -= film.get_price
-    # self.update()
+    if @funds > film.get_price
+      @funds -= film.get_price
+    else p "Insufficient funds"
+      update()
 
-    update()
+    end
+
   end
 
   def tickets()
